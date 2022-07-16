@@ -1,0 +1,144 @@
+Functional Interface : a functional interface is an interface that specifies exactly one abstract method.
+
+Examples
+------------------------------
+public interface Comparator<T> {
+    int compare(T o1, T o2);
+}
+
+public interface Runnable {
+    void run();
+}
+
+public interface ActionListener extends EventListener {
+    void actionPerformed(ActionEvent e);
+}
+
+public interface Callable<V> {
+    V call() throws Exception;
+}
+
+public interface PrivilegedAction<T> {
+    T run();
+}
+
+lambda expression can be assigned to a variable or passed to a method expecting a functional interface as argument, provided the lambda expression has the same
+signature as the abstract method of the functional interface.
+
+Example:
+--------
+public void process(Runnable r) {
+    r.run();
+}
+process(() -> System.out.println("This is awesome!!"));
+
+Note that the @FunctionalInterface annotation isn’t mandatory, but it’s good practice to use it when an interface is designed for that purpose. You can think of it
+like the @Override notation to indicate that a method is overridden.
+
+lambda expressions let you provide the implementation of the abstract method of a functional interface directly inline, and they treat
+the whole expression as an instance of a functional interface.
+-------------------------------------------------------------------------
+Predicate
+-------------------------------------------------------------------------
+The java.util.function.Predicate<T> interface defines an abstract method named test that accepts an object of generic type T and returns a boolean.
+You use this interface when you need to represent a boolean expression that uses an object of type T.
+@FunctionalInterface
+public interface Predicate<T> {
+    boolean test(T t);
+}
+
+public <T> List<T> filter(List<T> list, Predicate<T> p) {
+List<T> results = new ArrayList<>();
+    for(T t: list) {
+        if(p.test(t)) {
+        results.add(t);
+    }
+}
+return results;
+}
+Predicate<String> nonEmptyStringPredicate = (String s) -> !s.isEmpty();
+List<String> nonEmpty = filter(listOfStrings, nonEmptyStringPredicate);
+----------------------------------------------------------------------------
+Consumer
+----------------------------------------------------------------------------
+The java.util.function.Consumer<T> interface defines an abstract method named accept that takes an object of generic type T and returns no result (void).
+you can use it to create a method forEach,
+
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+}
+public <T> void forEach(List<T> list, Consumer<T> c) {
+    for(T t: list) {
+        c.accept(t);
+    }
+}
+
+forEach(Arrays.asList(1,2,3,4,5),(Integer i) -> System.out.println(i));
+-----------------------------------------------------------------------
+Function
+-----------------------------------------------------------------------
+The java.util.function.Function<T, R> interface defines an abstract method named apply that takes an object of generic type T as input and returns an object of
+generic type R.You can use this interface when you need to define a lambda that maps information from an input object to an output
+
+public interface Function<T, R> {
+    R apply(T t);
+}
+
+public <T, R> List<R> map(List<T> list, Function<T, R> f) {
+    List<R> result = new ArrayList<>();
+    for(T t: list) {
+        result.add(f.apply(t));
+    }
+return result;
+}
+
+// [7, 2, 6]
+List<Integer> l = map(Arrays.asList("lambdas", "in", "action"),(String s) -> s.length());
+
+Common functional interfaces added in Java 8
+---------------------------------------------------------------------------------------------------------------------------------------------
+FunctionalInterface | 		Predicate<T> 	|	Consumer<T>
+---------------------------------------------------------------------------------------------------------------------------------------------
+Predicate<T>		|	 T -> boolean 		| IntPredicate,LongPredicate,DoublePredicate
+Consumer<T>			|	 T -> void 			| IntConsumer, LongConsumer,DoubleConsumer
+Function<T, R>      |    T -> R             | IntFunction<R>,IntToDoubleFunction,IntToLongFunction,LongFunction<R>,LongToDoubleFunction,LongToIntFunction,DoubleFunction<R>,DoubleToIntFunction,DoubleToLongFunction,ToIntFunction<T>,ToDoubleFunction<T>,ToLongFunction<T>
+Supplier<T>         |    () -> T            | BooleanSupplier, IntSupplier,LongSupplier, DoubleSupplier
+UnaryOperator<T>    |    T -> T             | IntUnaryOperator,LongUnaryOperator,DoubleUnaryOperator
+BinaryOperator<T>   |    (T, T) -> T        | IntBinaryOperator,LongBinaryOperator,DoubleBinaryOperator
+BiPredicate<T, U>   |    (T, U) -> boolean  |
+BiConsumer<T, U>    |    (T, U) -> void     | ObjIntConsumer<T>,ObjLongConsumer<T>,ObjDoubleConsumer<T>
+BiFunction<T, U, R> |    (T, U) -> R        | ToIntBiFunction<T, U>,ToLongBiFunction<T, U>,ToDoubleBiFunction<T, U>
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Examples of lambdas with functional interfaces
+---------------------------------------------------------------------------------------------------------------------------------------
+Use case 					    Example of lambda 	Matching 							functional interface
+---------------------------------------------------------------------------------------------------------------------------------------
+A boolean expression			|(List<String> list) -> list.isEmpty() 					|	Predicate<List<String>>
+Creating objects        		|() -> new Apple(10) 									|	Supplier<Apple>
+Consuming from an object 	 	|(Apple a) ->System.out.println(a.getWeight()) 			|	Consumer<Apple>
+Select/extract from an object	|(String s) -> s.length() 								|	Function<String,Integer> or ToIntFunction<String>
+Combine two values				|(int a, int b) -> a * b 								|	IntBinaryOperator
+Compare two objects				|(a1, a2) -> a1.getWeight().compareTo(a2.getWeight())	|   Comparator<Apple> or BiFunction<Apple, Apple,Integer> or ToIntBiFunction<Apple,Apple>
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Question :Type checking—why won’t the following code compile?
+Object o = () -> { System.out.println("Tricky example"); };
+Answer : The context of the lambda expression is Object (the target type). But Object isn’t a functional interface. To fix this you can change the target
+type to Runnable, which represents a function descriptor
+Wroks fine:  1. Runnable r = () -> { System.out.println("Tricky example"); };
+You could also fix the problem by casting the lambda expression to Runnable, which explicitly provides a target type
+Object o = (Runnable) () -> { System.out.println("Tricky example"); }; //here assigning the Runnable to Object
+
+This technique can be useful in the context of overloading with a method taking two different functional interfaces that have the same function descriptor.
+You can cast the lambda in order to explicitly disambiguate which method signature should be selected.
+public void execute(Runnable runnable) {
+    runnable.run();
+}
+public void execute(Action<T> action) {
+    action.act();
+}
+
+But, you can explicitly disambiguate the call by using a cast expression: execute
+((Action) () -> {});

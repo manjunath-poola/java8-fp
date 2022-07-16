@@ -1,9 +1,9 @@
-package com.manju.java8.part2.service;
+package com.manju.java8.l2.service;
 
-import com.manju.java8.part2.functional.AppleFormatter;
-import com.manju.java8.part2.functional.ApplePredicate;
-import com.manju.java8.part2.model.Apple;
-import com.manju.java8.part2.model.Color;
+import com.manju.java8.l2.functional.AppleFormatter;
+import com.manju.java8.l2.functional.ApplePredicate;
+import com.manju.java8.l2.model.Apple;
+import com.manju.java8.l2.model.Color;
 
 import java.util.ArrayList;
 import java.util.List;

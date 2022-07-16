@@ -1,4 +1,4 @@
-package com.manju.java8.part2.model;
+package com.manju.java8.l2.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

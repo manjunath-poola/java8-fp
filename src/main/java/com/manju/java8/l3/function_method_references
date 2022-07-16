@@ -1,0 +1,40 @@
+But how can you pass an ordering strategy to the sort method? Well, the sort method has the following signature:
+void sort(Comparator<? super E> c)
+
+It expects a Comparator object as argument to compare two Apples
+
+public class AppleComparator implements Comparator<Apple> {
+    public int compare(Apple a1, Apple a2){
+        return a1.getWeight().compareTo(a2.getWeight());
+    }
+}
+inventory.sort(new AppleComparator());
+
+------------------------------------------
+Use an anonymous class
+------------------------------------------
+inventory.sort(new Comparator<Apple>() {
+    public int compare(Apple a1, Apple a2){
+        return a1.getWeight().compareTo(a2.getWeight());
+    }
+});
+
+-------------------------------------------
+Use lambda expressions
+-------------------------------------------
+Java 8 introduced lambda expressions, which provide a lightweight syntax to achieve the same goal: passing code.
+the Comparator represents a function descriptor (T, T) -> int
+Your new improved solution looks therefore as follows
+inventory.sort((Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight()) );
+
+We explained that the Java compiler could infer the types of the parameters of a lambda expression by using the context in which the lambda appears
+inventory.sort((a1, a2) -> a1.getWeight().compareTo(a2.getWeight()));
+
+Can you make your code even more readable? Comparator includes a static helper method called comparing that takes a Function extracting a Comparable key and
+produces a Comparator object You can now rewrite your solution in a slightly more compact form:
+
+import static java.util.Comparator.comparing;
+inventory.sort(comparing(apple -> apple.getWeight()));
+
+You can use a method reference to make your code slightly less verbose (assuming a static import of java.util.Comparator.comparing):
+inventory.sort(comparing(Apple::getWeight));

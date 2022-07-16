@@ -1,10 +1,10 @@
-package com.manju.java8.part2.manager;
+package com.manju.java8.l2.manager;
 
-import com.manju.java8.part2.functional.AppleFancyFormatter;
-import com.manju.java8.part2.functional.AppleSimpleFormatter;
-import com.manju.java8.part2.model.Apple;
-import com.manju.java8.part2.model.Color;
-import com.manju.java8.part2.service.AppleService;
+import com.manju.java8.l2.functional.AppleFancyFormatter;
+import com.manju.java8.l2.functional.AppleSimpleFormatter;
+import com.manju.java8.l2.model.Apple;
+import com.manju.java8.l2.model.Color;
+import com.manju.java8.l2.service.AppleService;
 
 import java.util.ArrayList;
 import java.util.List;

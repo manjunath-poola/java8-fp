@@ -1,0 +1,41 @@
+Composing Comparators
+ static method Comparator.comparing to return a  Comparator based on a Function that extracts a key for comparison as follows:
+ Comparator<Apple> c = Comparator.comparing(Apple::getWeight);
+
+REVERSED ORDER
+---------------
+What if you wanted to sort the apples by decreasing weight? There’s no need to create a different instance of a Comparator.
+inventory.sort(comparing(Apple::getWeight).reversed());
+
+CHAINING COMPARATORS
+This is all nice, but what if you find two apples that have the same weight? Which apple should have priority in the sorted list? You may want to provide a second
+Comparator to further refine the comparison.
+    inventory.sort(comparing(Apple::getWeight)
+    .reversed()
+    .thenComparing(Apple::getCountry));
+--------------------------------
+Composing Predicates
+--------------------------------
+The Predicate interface includes three methods that let you reuse an existing Predicate to create more complicated ones: negate, and, and or.
+
+Predicate<Apple> notRedApple = redApple.negate(); //apple that is not red.
+
+You may want to combine two lambdas to say that an apple is both red and heavy with the and method:
+Predicate<Apple> redAndHeavyApple = redApple.and(apple -> apple.getWeight() > 150);
+
+You can combine the resulting predicate one step further to express apples that are red and heavy (above 150 g) or only green apples:
+
+Predicate<Apple> redAndHeavyAppleOrGreen = redApple.and(apple -> apple.getWeight() > 150).or(apple -> GREEN.equals(a.getColor()));
+----------------------------------
+Composing Functions
+----------------------------------
+The Function interface comes with two default methods for this, andThen and compose, which both return an instance of Function
+
+The method andThen returns a function that first applies a given function to an input and then applies another function to the result of that application. For example,
+given a function f that increments a number (x -> x + 1) and another function g that multiples a number by 2, you can combine them to create a function h that first
+increments a number and then multiplies the result by 2:
+
+Function<Integer, Integer> f = x -> x + 1;
+Function<Integer, Integer> g = x -> x * 2;
+Function<Integer, Integer> h = f.andThen(g);
+int result = h.apply(1);

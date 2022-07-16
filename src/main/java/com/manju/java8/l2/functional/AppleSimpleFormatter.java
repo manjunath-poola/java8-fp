@@ -1,6 +1,6 @@
-package com.manju.java8.part2.functional;
+package com.manju.java8.l2.functional;
 
-import com.manju.java8.part2.model.Apple;
+import com.manju.java8.l2.model.Apple;
 
 public class AppleSimpleFormatter implements AppleFormatter {
     public String accept(Apple apple) {
