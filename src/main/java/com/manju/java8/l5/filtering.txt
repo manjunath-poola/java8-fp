@@ -1,0 +1,22 @@
+----------
+filter
+-----------
+The Stream interface supports a filter method. This operation takes as argument a predicate (a function returning a boolean)
+and returns a stream including all elements that match the predicate.
+
+----------------
+distinct
+----------------
+Operation	                Type	            Return type	            Type/functional interface used	                Function descriptor
+filter                      
+distinct
+takeWhile
+dropWhile
+skip
+limit Intermediate
+(stateful-bounded)
+map
+flatMap
+sorted
+anyMatch
+noneMatch

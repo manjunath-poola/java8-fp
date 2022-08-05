@@ -1,0 +1,6 @@
+Stream a short definition is “a sequence of elements from a source that supports data-processing operations.”
+Collections are about data; streams are about computations. We explain this idea in greater detail in the coming sections.
+
+Source—   Streams consume from a data-providing source such as collections, arrays, or I/O resources.
+Data-processing operations—   Streams support database-like operations and common operations from functional programming languages
+to manipulate data, such as filter, map, reduce, find, match, sort, and so on
