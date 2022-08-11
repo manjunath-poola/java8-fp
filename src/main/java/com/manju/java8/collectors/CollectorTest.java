@@ -1,8 +1,14 @@
 package com.manju.java8.collectors;
 
+import jdk.dynalink.Operation;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
 
+import static java.util.List.*;
 import static java.util.stream.Collectors.*;
 
 public class CollectorTest {
@@ -107,22 +113,132 @@ public class CollectorTest {
         //count want to make Integer
         //groupingBy and mapping (Function, Collector)
         // collectingAndThen (Collector, Function)
-        List<Person> persons = createPersons();
-        Map<String, Integer> countByName = persons.stream()
-                                                  .collect(groupingBy(Person::getName, collectingAndThen(counting(), Long::intValue)));
-        System.out.println(countByName);
+//        List<Person> persons = createPersons();
+//        Map<String, Integer> countByName = persons.stream()
+//                                                  .collect(groupingBy(Person::getName, collectingAndThen(counting(), Long::intValue)));
+//        System.out.println(countByName);
 
+        //reduce -- reduce,collect, sum
+//        List<Person> persons = createPersons();
+//        System.out.println(persons.stream()
+//                                  .mapToInt(Person::getAge)
+//                                  .sum());
+//min
+//        List<Person> persons = createPersons();
+//                System.out.println(persons.stream()
+//                                  .mapToInt(Person::getAge)
+//                                  .min());
+
+//        List<Person> persons = createPersons();
+//        System.out.println(persons.stream()
+//                                  .mapToInt(Person::getAge)
+//                                  .max());
+        // maxBy
+//        List<Person> persons = createPersons();
+//        System.out.println(persons.stream()
+//                                  .collect(maxBy(Comparator.comparing(Person::getAge))));
+
+        //minBy
+//        List<Person> persons = createPersons();
+//        System.out.println(persons.stream()
+//                                  .collect(minBy(Comparator.comparing(Person::getAge))));
+
+        //collect max age by name
+
+//        List<Person> persons = createPersons();
+//        String maxPersonName = persons.stream()
+//                                      .collect(collectingAndThen(maxBy(Comparator.comparing(Person::getAge)), person -> person.map(Person::getName)
+//        System.out.println(maxPersonName);
+
+// filtering
+
+//map vs mapping
+        //map -- will be done by the stream
+        //mapping will be done at reduce operation
+
+// filtering -- also same as mapping -:( it is added in java 11
+
+//        System.out.println(createPersons().stream()
+//                                          .collect(groupingBy(Person::getAge, mapping(Person::getName,
+//                                                                                      filtering(name -> name.length() > 4, toList())))));
+// teeing
+// goruping mapping (Function ,Collector)
+// collectingAndThen(Collector,Function)
+// teeing((Collector,Collector,Operation)
+// Operation -- BiOperator
+
+// flatMapping
+//flatMap
+        List<Integer> numbers = of(1, 2, 3);
+//        1-1 function
+//        numbers.stream()
+//               .map(e -> e * 2)
+//               .collect(toList());
+        //Stream<T>.map(f11)==>Stream<R>
+//        1-many function
+//        System.out.println(
+//                numbers.stream()
+//                       .map(e -> List.of(e - 1, e + 2))
+//                       .collect(toList()));
+//  Stream<T>.map(f11)==>Stream<List<R>>
+        //Stream<T>.??(f1n)==>Stream<R> what we want
+
+//        numbers.stream()
+//               .flatMap(e -> List.of(e - 1, e + 1)
+//                                 .stream())
+//               .collect(toList());
+
+//        Stream
+//                .map(Function<T,R>)==>Stream<R>
+//        .flatMap(Function<T,Stream<R>>) ==>Stream<R>
+
+//        1-1  Stream<T> to Stream<R> use map
+//        1-many  Stream<T> to Stream<Collection<R>> use map
+//        1-many  Stream<T> to Stream<R> use flatmap
+
+        // flatMap during collect
+//        System.out.println(createPersons().stream()
+//                                          .map(Person::getName)
+//                                          .flatMap(name -> Stream.of(name.split("")))
+//                                          .collect(toList()));
+//        System.out.println(createPersons().stream()
+//                                          .collect(groupingBy(Person::getAge, mapping(Person::getName, toList()))));
+
+//        System.out.println(createPersons().stream()
+//                                          .collect(groupingBy(Person::getAge, mapping(person -> person.getName()
+//                                                                                                      .split(""), toList()))));
+
+//        System.out.println(createPersons().stream()
+//                                          .collect(groupingBy(Person::getAge, flatMapping(person -> Stream.of(person.getName()
+//                                                                                                                    .split("")), toList()))));
+
+
+        System.out.println(createPersons().stream()
+                                          .collect(groupingBy(Person::getAge,
+                                                              mapping(person -> person.getName()
+                                                                                      .toUpperCase(),
+                                                                      flatMapping(name -> Stream.of(name.split("")), toList())))));
+
+//reduce - sum,max,min,reduce,collect
+//        collect(Collector) Collectors is util we can use toList better to use toUnmodifiableList, toUnmodifiableSet,toUnmodifiableMap
+        //partitioningBy -- takes collection splits by two.
+        //groupingBy
+        //groupingBy(Function<T,R>)
+        //groupingBy(Function,Collector)
+        //mappingBy(Function,Collector)
+        //collectingAndThen(Collector,Function)
+        //teeing(Collector,Collector,Operator)
     }
 
     private static List<Person> createPersons() {
-        return List.of(new Person("Manju", 37),
-                       new Person("Ram", 40),
-                       new Person("Raj", 8),
-                       new Person("Mohan", 23),
-                       new Person("Mohan", 40),
-                       new Person("Madhav", 29),
-                       new Person("Madhav", 41),
-                       new Person("Roja", 30),
-                       new Person("Ramani", 12));
+        return of(new Person("Manju", 37),
+                  new Person("Ram", 40),
+                  new Person("Raj", 8),
+                  new Person("Mohan", 23),
+                  new Person("Mohan", 40),
+                  new Person("Madhav", 29),
+                  new Person("Madhav", 41),
+                  new Person("Roja", 30),
+                  new Person("Ramani", 12));
     }
 }

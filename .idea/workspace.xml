@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="954d1f11-8d7b-4ab1-b1a8-7cfe8ff68379" name="Changes" comment="modern java in action part2 samples with evaluation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/CollectorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/StreamTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/CollectorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/CollectorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659699598678</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="modern java in action part2 samples with evaluation">
+      <created>1660121273386</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1660121273386</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
