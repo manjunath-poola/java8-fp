@@ -1,11 +1,8 @@
 package com.manju.java8.collectors;
 
-import jdk.dynalink.Operation;
+import com.manju.java8.collectors.model.Gender;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import static java.util.List.*;
@@ -15,11 +12,11 @@ public class CollectorTest {
     public static void main(String[] args) {
 //        System.out.println(createPersons().stream()
 //                                          .filter(person -> person.getAge() > 30)
-//                                          .collect(Collectors.toList()));
+//                                          .collect(toList()));
 //        System.out.println(createPersons().stream()
 //                                          .map(Person::getName)
 //                                          .map(String::toUpperCase)
-//                                          .collect(Collectors.toList()));
+//                                          .collect(toList()));
 
         //Map name as Key and age as value immperative
 //        Map<String, Integer> nameAndAge = new HashMap<>();
@@ -33,15 +30,15 @@ public class CollectorTest {
 //                       .map(Person::getName)
 //                       .collect(Collectors.toMap(keyFunction,valueFunction));
 //        Map<String, Integer> nameAndAge = createPersons().stream()
-//                                                         .collect(Collectors.toMap(Person::getName, Person::getAge));
+//                                                         .collect(toMap(Person::getName, Person::getAge));
 //        System.out.println(nameAndAge);
 
 //        List<Person> ages = createPersons().stream()
-//                                           .collect(Collectors.toList());
+//                                           .collect(toList());
 //        System.out.println(ages.getClass());
         // toUnmodifiableList, toUnmodifiableSet, toUnmodifiableMap
 //        List<Person> ages = createPersons().stream()
-//                                           .collect(Collectors.toUnmodifiableList());
+//                                           .collect(toUnmodifiableList());
 //        System.out.println(ages.getClass());
 
         //get the names as comma separated.
@@ -49,7 +46,7 @@ public class CollectorTest {
 //        String names = createPersons().stream()
 //                                      .map(Person::getName)
 //                                      .map(String::toUpperCase)
-//                                      .collect(Collectors.joining(","));
+//                                      .collect(joining(","));
 //        System.out.println(names);
 
         //Collector<T,A,R>
@@ -68,8 +65,7 @@ public class CollectorTest {
 
         //single iterator by paritioningBy
 //        Map<Boolean, List<Person>> paritionedMap = createPersons().stream()
-//                                                                  .filter(person -> person.getAge() % 2 != 0)
-//                                                                  .collect(Collectors.partitioningBy(person -> person.getAge() % 2 == 0));
+//                                                                  .collect(partitioningBy(person -> person.getAge() % 2 == 0));
 //        System.out.println(paritionedMap);
 
         // if multiple groups you want to do
@@ -78,9 +74,9 @@ public class CollectorTest {
 //        for (Person person : persons) {
 //            List<Person> list = null;
 //            if (byName.containsKey(person.getName())) {
-//                list = byName.get(person.getName());
-//            } else {
-//                list = new ArrayList<>();
+////                list = byName.get(person.getName());
+////            } else {
+////                list = new ArrayList<>();
 //                byName.put(person.getName(), list);
 //            }
 //            list.add(person);
@@ -89,7 +85,7 @@ public class CollectorTest {
 
 //        List<Person> persons = createPersons();
 //        Map<String, List<Person>> namesMap = persons.stream()
-//                                                    .collect(Collectors.groupingBy(Person::getName));
+//                                                    .collect(groupingBy(Person::getName));
 //        System.out.println(namesMap);
 
 //        grouping by creates a bucket
@@ -99,7 +95,7 @@ public class CollectorTest {
         //groupping by is overloaded which takes another collector, groupping assumes you need a set
 //        List<Person> persons = createPersons();
 //        Map<String, List<Integer>> nameAgeMap = persons.stream()
-//                                                       .collect(Collectors.groupingBy(Person::getName, Collectors.mapping(Person::getAge, Collectors.toList())));
+//                                                       .collect(groupingBy(Person::getName, mapping(Person::getAge, toList())));
 //        // in this example we have 3 collector we have Collector(Function,Collector(Function,Collector))
 //
 //        System.out.println(nameAgeMap);
@@ -118,7 +114,7 @@ public class CollectorTest {
 //                                                  .collect(groupingBy(Person::getName, collectingAndThen(counting(), Long::intValue)));
 //        System.out.println(countByName);
 
-        //reduce -- reduce,collect, sum
+        //reduce -- , sum, reduce,collect
 //        List<Person> persons = createPersons();
 //        System.out.println(persons.stream()
 //                                  .mapToInt(Person::getAge)
@@ -143,6 +139,11 @@ public class CollectorTest {
 //        System.out.println(persons.stream()
 //                                  .collect(minBy(Comparator.comparing(Person::getAge))));
 
+//        List<Person> persons = createPersons();
+//        System.out.println(persons.stream()
+//                                  .collect(groupingBy(Person::getName,maxBy(Comparator.comparing(Person::getAge)))));
+
+
         //collect max age by name
 
 //        List<Person> persons = createPersons();
@@ -152,9 +153,9 @@ public class CollectorTest {
 
 // filtering
 
-//map vs mapping
-        //map -- will be done by the stream
-        //mapping will be done at reduce operation
+// map vs mapping
+// map -- will be done by the stream
+// mapping will be done at reduce operation
 
 // filtering -- also same as mapping -:( it is added in java 11
 
@@ -162,7 +163,7 @@ public class CollectorTest {
 //                                          .collect(groupingBy(Person::getAge, mapping(Person::getName,
 //                                                                                      filtering(name -> name.length() > 4, toList())))));
 // teeing
-// goruping mapping (Function ,Collector)
+// grouping mapping (Function ,Collector)
 // collectingAndThen(Collector,Function)
 // teeing((Collector,Collector,Operation)
 // Operation -- BiOperator
@@ -184,8 +185,7 @@ public class CollectorTest {
         //Stream<T>.??(f1n)==>Stream<R> what we want
 
 //        numbers.stream()
-//               .flatMap(e -> List.of(e - 1, e + 1)
-//                                 .stream())
+//               .flatMap(e -> List.of(e - 1, e + 1).stream())
 //               .collect(toList());
 
 //        Stream
@@ -231,14 +231,14 @@ public class CollectorTest {
     }
 
     private static List<Person> createPersons() {
-        return of(new Person("Manju", 37),
-                  new Person("Ram", 40),
-                  new Person("Raj", 8),
-                  new Person("Mohan", 23),
-                  new Person("Mohan", 40),
-                  new Person("Madhav", 29),
-                  new Person("Madhav", 41),
-                  new Person("Roja", 30),
-                  new Person("Ramani", 12));
+        return of(new Person("Manju", 37, Gender.MALE),
+                  new Person("Ram", 40, Gender.MALE),
+                  new Person("Raj", 8, Gender.MALE),
+                  new Person("Mohan", 23, Gender.MALE),
+                  new Person("Mohan", 40, Gender.MALE),
+                  new Person("Madhav", 29, Gender.MALE),
+                  new Person("Madhav", 41, Gender.MALE),
+                  new Person("Roja", 30, Gender.FEMALE),
+                  new Person("Ramani", 12 , Gender.FEMALE));
     }
 }

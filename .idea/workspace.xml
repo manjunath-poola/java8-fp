@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="954d1f11-8d7b-4ab1-b1a8-7cfe8ff68379" name="Changes" comment="modern java in action part2 samples with evaluation">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/model/Gender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/comepletablefuture/CombineTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/comepletablefuture/CompletableFutureTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/comepletablefuture/ComposeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/parallelAndAsync/ParallelTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/CollectorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/CollectorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/StreamTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manju/java8/collectors/StreamTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -43,12 +51,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Code/java8-fp",
+    "last_opened_file_path": "C:/Code/reactive-java",
     "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.manju.java8.collectors" />
       <recent name="com.manju.java8.generics.models" />
       <recent name="com.manju.java8.l4.model" />
       <recent name="com.manju.java8.lambda.behavior.parameterization" />
@@ -66,13 +75,13 @@
       <recent name="com.manju.java8.lambda.behavior.parameterization" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CollectorTest">
-    <configuration name="BuildingStreams" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.manju.java8.l5.BuildingStreams" />
+  <component name="RunManager" selected="Application.ComposeTest">
+    <configuration name="CombineTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.manju.java8.comepletablefuture.CombineTest" />
       <module name="java8-fp.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.manju.java8.l5.*" />
+          <option name="PATTERN" value="com.manju.java8.comepletablefuture.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -80,12 +89,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CollectorTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ComposeTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.manju.java8.comepletablefuture.ComposeTest" />
+      <module name="java8-fp.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.manju.java8.comepletablefuture.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParallelTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.manju.java8.parallelAndAsync.ParallelTest" />
+      <module name="java8-fp.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.manju.java8.parallelAndAsync.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.manju.java8.collectors.CollectorTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.manju.java8.collectors.CollectorTest" />
       <module name="java8-fp.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.manju.java8.collectors.*" />
+          <option name="PATTERN" value="com.manju.java8.collectors.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -93,38 +128,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GroupingTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.manju.java8.l6.GroupingTest" />
+    <configuration name="com.manju.java8.comepletablefuture.CompletableFutureTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.manju.java8.comepletablefuture.CompletableFutureTest" />
       <module name="java8-fp.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.manju.java8.l6.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReducingTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.manju.java8.l5.ReducingTest" />
-      <module name="java8-fp.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.manju.java8.l5.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StreamTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.manju.java8.collectors.StreamTest" />
-      <module name="java8-fp.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.manju.java8.collectors.*" />
+          <option name="PATTERN" value="com.manju.java8.comepletablefuture.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,11 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CollectorTest" />
-        <item itemvalue="Application.StreamTest" />
-        <item itemvalue="Application.GroupingTest" />
-        <item itemvalue="Application.BuildingStreams" />
-        <item itemvalue="Application.ReducingTest" />
+        <item itemvalue="Application.ComposeTest" />
+        <item itemvalue="Application.CombineTest" />
+        <item itemvalue="Application.com.manju.java8.comepletablefuture.CompletableFutureTest" />
+        <item itemvalue="Application.ParallelTest" />
+        <item itemvalue="Application.com.manju.java8.collectors.CollectorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -186,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660121273386</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="modern java in action part2 samples with evaluation">
+      <created>1660196841619</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1660196841619</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

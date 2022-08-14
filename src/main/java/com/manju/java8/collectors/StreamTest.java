@@ -1,8 +1,10 @@
 package com.manju.java8.collectors;
 
-import java.util.ArrayList;
+import com.manju.java8.collectors.model.Gender;
+
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.List.of;
 
 public class StreamTest {
     public static void main(String[] args) {
@@ -29,7 +31,7 @@ public class StreamTest {
 // we call it with same input - idempotency
 
 // 1. Pure function do not change anything
-// 2. Pure function do not depend on anything that may possibly change
+//// 2. Pure function do not depend on anything that may possibly change
 
         // should not use mutable code in the streams
 //        Example  for `Wrong way, avoid the shared mutablity
@@ -76,12 +78,14 @@ public class StreamTest {
     }
 
     private static List<Person> createPersons() {
-        return List.of(new Person("Manju", 37),
-                       new Person("Ram", 40),
-                       new Person("Raj", 8),
-                       new Person("Mohan", 23),
-                       new Person("Madhav", 29),
-                       new Person("Roja", 30),
-                       new Person("Ramani", 12));
+        return of(new Person("Manju", 37, Gender.MALE),
+                  new Person("Ram", 40, Gender.MALE),
+                  new Person("Raj", 8, Gender.MALE),
+                  new Person("Mohan", 23, Gender.MALE),
+                  new Person("Mohan", 40, Gender.MALE),
+                  new Person("Madhav", 29, Gender.MALE),
+                  new Person("Madhav", 41, Gender.MALE),
+                  new Person("Roja", 32, Gender.FEMALE),
+                  new Person("Ramani", 12, Gender.FEMALE));
     }
 }
